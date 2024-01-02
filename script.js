@@ -31,11 +31,72 @@ class SinglyLinkedList {
         this.size++;//increment the length by one 
         return this;
     }
+    // unshift
+    prepend(value){
+        const newNode = new Node(value);
+        if(!this.head){
+            this.head = newNode;
+            this.tail = this.head
+        }else {
+            // otherwise set the newly created Node's next property to be the current head property on the list
+            newNode.nextNode = this.head;
+            // set the head property on the list to be that newly created node 
+            this.head = newNode;
+        }
+        this.size++
+        return this;
+    }
 
-    // prepend(value){
-    //     const newNode = new Node(value)
-    //     // newNode.
-    // }
+    getSize(){//size returns the total number of nodes in the list
+        return this.size;
+    }
+
+    getHead(){//head returns the first node in the list
+        return this.head;
+    }
+
+    getTail(){//tail returns the last node in the list
+        return this.tail;
+    }
+
+    at(index){//get/at(index) returns the node at the given index
+
+        //if index is less than 0 or greater than or equal to the length of the list, return null
+        if(index < 0 || index >= this.size) return null;
+        // loop through the list until you reach the index and return the node at that specific index
+        let counter = 0
+        let current = this.head;
+        while(counter !== index){
+            current = current.nextNode;
+            counter++
+        }
+        return current;
+    }
+
+    pop(){//pop removes the last element from the list
+        //if there is no node in the list, return undefined
+        if(!this.head) return undefined;
+        // Loop through the list until you reach the tail
+        let current = this.head
+        let newTail = current;
+        while(current.nextNode){
+            newTail = current
+            current = current.nextNode
+        }
+        // Set the next property of the 2nd to last node to be null
+        this.tail = newTail
+        // set the tail to be the 2nd to last node
+        this.tail.nextNode = null
+        // decrement the length of the list by 1
+        this.size--;
+        if(this.size === 0){
+            this.head = null
+            this.tail = null
+        }
+        //return the value of the node removed 
+        return current;
+    }
+
 }
 
 let list = new SinglyLinkedList();

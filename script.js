@@ -60,7 +60,6 @@ class SinglyLinkedList {
     }
 
     at(index){//get/at(index) returns the node at the given index
-
         //if index is less than 0 or greater than or equal to the length of the list, return null
         if(index < 0 || index >= this.size) return null;
         // loop through the list until you reach the index and return the node at that specific index
@@ -97,6 +96,46 @@ class SinglyLinkedList {
         return current;
     }
 
+    contains(value){//returns true if the passed in value is in the list and otherwise returns false.
+        let current = this.head
+        while(current!==null){
+            if(current.value === value){
+                return true;
+            }
+            current = current.next
+        }
+        return false;
+    }
+
+    find(value){//returns the index of the node containing value, or null if not found.
+        let current = this.head
+        let counter = 0
+        while(current!==null){
+            if(current.value===value){
+                return counter;
+            }
+            current = this.nextNode
+            counter++;
+            }    
+        return null;
+    }
+
+    toString(){//represents your LinkedList objects as strings, so you can print them out and preview them in the console. The format should be: ( value ) -> ( value ) -> ( value ) -> null
+        let result = '';
+        let current = this.head;
+
+        while(current !== null){
+            result +=`(${current.value} ->)`
+            current = current.nextNode
+        }
+        result += 'null';
+        return result;
+    }
+
+    insertAt(value, index){//that inserts a new node with the provided value at the given index.
+    
+    
+    }
 }
 
 let list = new SinglyLinkedList();
